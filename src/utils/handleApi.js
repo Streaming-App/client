@@ -4,12 +4,14 @@ const handleApi = axios.create({
   baseURL: 'http://localhost:3333',
 });
 
-const userRegister = async (name, email, password) => {
-  const { data } = await handleApi.post('/user', {
+async function userRegister(name, email, password) {
+  const data = await handleApi.post('/user', {
     name,
     email,
     password,
-  });
+  })
+  .then((res) => res.data)
+  .catch((err) => console.log(err));
   return data;
 };
 

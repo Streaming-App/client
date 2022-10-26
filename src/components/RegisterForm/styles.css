@@ -1,0 +1,40 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  width: 100vw;
+  height: 80vh;
+}
+
+.register-form {
+  display: flex;
+  background-color: var(--color-tertiary);
+  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.input-form {
+  margin: 0.3rem;
+  border-radius: 0.5rem;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-form {
+  background-color: blue;
+  color: whitesmoke;
+  width: 70%;
+  padding: 8px;
+}
+
+.btn-form:disabled {
+  background-color: grey;
+  color: black;
+  width: 70%;
+  padding: 8px;
+}
