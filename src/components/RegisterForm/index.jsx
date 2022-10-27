@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import emailValidate from '../../utils/emailValidation';
 import { userRegister } from '../../utils/handleApi';
 import handleLocal from '../../utils/handleStorage';
@@ -12,7 +12,7 @@ export default function RegisterForm() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
   const { setLocalStorage } = handleLocal;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const sendRegisterInfos = async () => {
     const result = await userRegister(name, email, password);
@@ -21,7 +21,8 @@ export default function RegisterForm() {
     } else {
       setError(false);
       setLocalStorage('userId', result);
-      navigate('/login');
+      console.log(result);
+      // navigate('/login');
     }
   };
 
