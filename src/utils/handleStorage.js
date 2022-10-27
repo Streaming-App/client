@@ -1,7 +1,8 @@
 const handleLocal = {
-  localStorageSetUser: (user) => localStorage.setItem('user', JSON.stringify(user)),
-
-  localStorageGetUser: () => JSON.parse(localStorage.getItem('user')),
+  setLocalStorage: (value, key) =>
+    localStorage.setItem(key, JSON.stringify(value)),
+  getLocalStorage: (key) => JSON.parse(localStorage.getItem(key)),
+  removeLocalStorage: (key) => localStorage.removeItem(key),
 };
 
-export default { handleLocal };
+export default handleLocal;

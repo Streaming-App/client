@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import emailValidate from '../../utils/emailValidation';
-import userRegister from '../../utils/handleApi';
+import { userRegister } from '../../utils/handleApi';
+import handleLocal from '../../utils/handleStorage';
 import './styles.css';
 
 export default function RegisterForm() {
@@ -9,13 +11,17 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
+  const { setLocalStorage } = handleLocal;
+  const navigate = useNavigate();
 
   const sendRegisterInfos = async () => {
     const result = await userRegister(name, email, password);
-    if(!result) {
+    if (!result) {
       setError(true);
     } else {
-      console.log(result);
+      setError(false);
+      setLocalStorage('userId', result);
+      navigate('/login');
     }
   };
 
@@ -24,9 +30,9 @@ export default function RegisterForm() {
       const minPasswordLength = 8;
       const minNameLength = 4;
       setIsDisabled(
-        name.length < minNameLength
-        || !emailValidate(email)
-        || password.length < minPasswordLength,
+        name.length < minNameLength ||
+          !emailValidate(email) ||
+          password.length < minPasswordLength,
       );
     };
     validateInputs();
@@ -54,8 +60,12 @@ export default function RegisterForm() {
           className="input-form"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="button" className="btn-form" disabled={isDisabled}
-        onClick={sendRegisterInfos}>
+        <button
+          type="button"
+          className="btn-form"
+          disabled={isDisabled}
+          onClick={sendRegisterInfos}
+        >
           Registrar
         </button>
       </form>
