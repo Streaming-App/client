@@ -1,0 +1,6 @@
+.banner-modal {
+  height: 50%;
+  width: 50%;
+  padding: 0.1rem;
+  object-fit: cover;
+}
